@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taskmate</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-container">
+        <!-- part-1 -->
+        <h1 class="heading">Todo App</h1>
+        <div class="add-todo">
+            <input type="text" id="todo-text" placeholder="What do you have Planned?">
+        </div>
+        <!-- part-2 -->
+        <div class="box">
+            <h1 class="heading">Task</h1>
+            <div class="statistics">
+                <span id="total-todos">Total: <strong>0</strong></span>
+                <span id="completed-todos">Done: <strong>0</strong></span>
+            </div>
+        </div>
+        <!-- part-3 -->
+        <ul class="all-todo"></ul>
+    </div>
+    <script src="modules.js" type="module"></script>
+    <script src="logic.js" type="module"></script>
+</body>
+</html>
