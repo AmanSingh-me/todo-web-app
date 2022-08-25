@@ -1,4 +1,4 @@
-import { body, todoText, isClearHtml_Runned, totalTodos, completedTodos, allTodos, setLclStor, getLclStor, addTodo, showTodos, todos_Arr, editTodo, deleteTodo, todoCount} from "/modules.js";
+import { body, todoText, isClearHtml_Runned, totalTodos, completedTodos, allTodos, getLclStor, addTodo, showTodos, todos_Arr, editTodo, deleteTodo, todoCount, updt_Lcl_Stor } from "/modules.js";
 
 todoText.addEventListener('keyup', setTodo)
 function setTodo(event) {
@@ -17,10 +17,9 @@ function setTodo(event) {
         todos_Arr.push({ text: todo, isDone: false });
         addTodo(todo);
         todoText.value = "";
-        setLclStor("Todos", todos_Arr);
         todoCount.total++;
         totalTodos.textContent = todoCount.total;
-        setLclStor('todoCount', todoCount);
+        updt_Lcl_Stor()
     }
 }
 document.addEventListener('DOMContentLoaded', showTodos());
@@ -46,19 +45,18 @@ function getTrgt(event) {
             for (const data of todos_Arr) {
                 if (data.text === searchText) {
                     data.isDone = boolean;
-                    setLclStor('Todos', todos_Arr);
                 }
             }
         }
-        if (toggleClass) { // If toggle returns true
+        if (toggleClass) { // toggle returns true
             matchText(true);
             todoCount.done++;
         }
-        else if (!toggleClass) { // If toggle returns false
+        else if (!toggleClass) { // toggle returns false
             matchText(false);
             todoCount.done--;
         }
         completedTodos.textContent = todoCount.done;
-        setLclStor('todoCount', todoCount);
+        updt_Lcl_Stor();
     }
 }

@@ -52,7 +52,7 @@ function addTodo(TODO) {
 function showTodos() {
     let totalTodos_Arr = getLclStor('Todos');
 
-    if (totalTodos_Arr.length > 0) {
+    if (totalTodos_Arr !== null && totalTodos_Arr.length > 2) {
         totalTodos_Arr.forEach((data, index) => {
             allTodos.append(todoTemplate(data.text));
             todos_Arr.push(data);
@@ -65,10 +65,15 @@ function showTodos() {
     } else {
         allTodos.textContent = "Nothing to Show....";
     }
-    totalTodos.textContent = getLclStor('todoCount').total;
-    completedTodos.textContent = getLclStor('todoCount').done;
-    todoCount.total = getLclStor('todoCount').total;
-    todoCount.done = getLclStor('todoCount').done;
+
+    let todoCount_Arr_Obj = getLclStor('todoCount');
+
+    if (todoCount_Arr_Obj !== null) {
+        totalTodos.textContent = todoCount_Arr_Obj.total;
+        completedTodos.textContent = todoCount_Arr_Obj.done;
+        todoCount.total = todoCount_Arr_Obj.total;
+        todoCount.done = todoCount_Arr_Obj.done;
+    }
 }
 
 function editTodo(TRGT_TODO) {
@@ -92,17 +97,16 @@ function deleteTodo(TRGT_TODO) {
     let todoToDelete = TRGT_TODO.parentElement.firstElementChild.textContent;
     TRGT_TODO.parentElement.remove();
 
-    todos_Arr.forEach((data,index) => {
+    todos_Arr.forEach((data, index) => {
         if (data.text === todoToDelete) {
             todoCount.total--;
             totalTodos.textContent = todoCount.total;
-            todos_Arr.splice(index,1);
-            setLclStor('Todos', todos_Arr);
-            if(data.isDone){
+            todos_Arr.splice(index, 1);
+            if (data.isDone) {
                 todoCount.done--;
                 completedTodos.textContent = todoCount.done;
             }
-            setLclStor('todoCount', todoCount);
+            updt_Lcl_Stor();
         }
     });
     if (getLclStor('Todos').length == 0) {
@@ -111,4 +115,15 @@ function deleteTodo(TRGT_TODO) {
     }
 }
 
-export { body, todoText, isClearHtml_Runned, stats, totalTodos, completedTodos, allTodos, setLclStor, getLclStor, addTodo, showTodos, todos_Arr, editTodo, clearHtml, deleteTodo, todoCount }
+function updt_Lcl_Stor(WHOM = "both") {
+    if (WHOM === "Todos") {
+        setLclStor('Todos', todos_Arr);
+    } else if (WHOM === "todoCount") {
+        setLclStor('todoCount', todoCount);
+    } else if (WHOM === "both"){
+        setLclStor('Todos', todos_Arr);
+        setLclStor('todoCount', todoCount)
+    }
+}
+
+export { body, todoText, isClearHtml_Runned, stats, totalTodos, completedTodos, allTodos, setLclStor, getLclStor, addTodo, showTodos, todos_Arr, editTodo, clearHtml, deleteTodo, todoCount, updt_Lcl_Stor }
