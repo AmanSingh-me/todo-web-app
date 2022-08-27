@@ -1,8 +1,9 @@
 import { body, todoText, isClearHtml_Runned, totalTodos, completedTodos, allTodos, getLclStor, addTodo, showTodos, todos_Arr, editTodo, deleteTodo, todoCount, updt_Lcl_Stor } from "/modules.js";
 
-todoText.addEventListener('keyup', setTodo)
+todoText.addEventListener('keyup', setTodo);
 function setTodo(event) {
-    if (event.key === "Enter") {
+
+    if (event.key === "Enter" && todoText.value.length > 0) {
         if (!isClearHtml_Runned) { // For removing the text already present
             try {
                 if (getLclStor('Todos').length == 0) {
@@ -13,13 +14,15 @@ function setTodo(event) {
                 allTodos.innerHTML = "";
             }
         }
+
         let todo = todoText.value.trim();
         todos_Arr.push({ text: todo, isDone: false });
         addTodo(todo);
         todoText.value = "";
         todoCount.total++;
         totalTodos.textContent = todoCount.total;
-        updt_Lcl_Stor()
+        updt_Lcl_Stor();
+        allTodos.scrollBy(0, allTodos.scrollHeight); // Scrolls to current added
     }
 }
 document.addEventListener('DOMContentLoaded', showTodos());

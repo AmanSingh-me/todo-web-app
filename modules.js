@@ -77,20 +77,9 @@ function showTodos() {
 }
 
 function editTodo(TRGT_TODO) {
-    TRGT_TODO.parentElement.remove();
-    let todoToEdit = TRGT_TODO.parentElement.firstElementChild.textContent;
-    let index = todos_Arr.indexOf(todoToDelete);
-    todos_Arr.splice(index, 1);
-    setLclStor('Todos', todos_Arr);
-
-    if (getLclStor('Todos').length == 0) {
-        allTodos.innerHTML = 'Nothing to Show....';
-        isClearHtml_Runned = false;
-    }
-    todoCount.total--;
-    totalTodos.textContent = todoCount.total
-
-    todoText.textContent = todoToEdit;
+    let textTo_Edit = TRGT_TODO.parentElement.firstElementChild.textContent;
+    todoText.value = textTo_Edit;
+    deleteTodo(TRGT_TODO);
 }
 
 function deleteTodo(TRGT_TODO) {

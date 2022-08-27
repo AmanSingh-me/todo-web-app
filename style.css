@@ -101,6 +101,7 @@ img{
     padding-right: 100px;
     position: relative;
     list-style: none;
+    transition: all 700ms;
 }
 
 .all-todo .todo-detail{
@@ -108,8 +109,13 @@ img{
     font-size: 1rem;
     white-space: nowrap;
     text-overflow: ellipsis;
+    padding-left: 5px;
     overflow: hidden;
 }
+.all-todo li:hover{
+    background-color: #0f3a64;
+}
+
 .all-todo li:first-child{
     margin-top: 0;
 }
@@ -133,6 +139,7 @@ cursor: pointer;
     right: 2px;
     transform: translateY(-50%);
 }
+
 #more{
     right: 4.2em
 }
@@ -140,9 +147,11 @@ cursor: pointer;
     right: 2.1em;
 }
 .isDone_true{
-    color: #096d09 !important;
-    text-decoration: line-through;
+    color: #14ae06 !important;
+    text-decoration:1.5px line-through #fff;
 }
+
+/* Media Queries */
 
 
 @media screen and (min-width:768px) {
