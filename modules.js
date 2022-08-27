@@ -52,7 +52,7 @@ function addTodo(TODO) {
 function showTodos() {
     let totalTodos_Arr = getLclStor('Todos');
 
-    if (totalTodos_Arr !== null && totalTodos_Arr.length > 2) {
+    if (totalTodos_Arr !== null) {
         totalTodos_Arr.forEach((data, index) => {
             allTodos.append(todoTemplate(data.text));
             todos_Arr.push(data);
@@ -62,6 +62,7 @@ function showTodos() {
                 element[index].classList.add('isDone_true')
             }
         })
+        console.log('a');
     } else {
         allTodos.textContent = "Nothing to Show....";
     }
@@ -101,6 +102,7 @@ function deleteTodo(TRGT_TODO) {
     if (getLclStor('Todos').length == 0) {
         allTodos.innerHTML = 'Nothing to Show....';
         isClearHtml_Runned = false;
+        localStorage.clear()
     }
 }
 
@@ -109,7 +111,7 @@ function updt_Lcl_Stor(WHOM = "both") {
         setLclStor('Todos', todos_Arr);
     } else if (WHOM === "todoCount") {
         setLclStor('todoCount', todoCount);
-    } else if (WHOM === "both"){
+    } else if (WHOM === "both") {
         setLclStor('Todos', todos_Arr);
         setLclStor('todoCount', todoCount)
     }
