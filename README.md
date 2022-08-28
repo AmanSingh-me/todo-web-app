@@ -2,7 +2,7 @@
 # Todo Web App
 
 This is a simple todo web app
-I've, made this project when I'm learning JavaScript.
+This is a simple todo web app. I've, made this project while learning JavaScript.
 
 
 
