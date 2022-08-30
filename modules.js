@@ -34,7 +34,7 @@ function todoTemplate(TODO_VALUE) {
         let img = document.createElement('img');
         img.id = detail.id;
         img.classList.add(detail.class);
-        img.setAttribute("src", detail.src);
+        img.setAttribute("src", `/assets/${detail.src}`);
 
         li.append(img);
     }

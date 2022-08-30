@@ -15,7 +15,7 @@ This is a simple todo web app. I've, made this project while learning JavaScript
 
 ## Screenshots
 
-![App Screenshot](preview.png)
+![App Screenshot](/assets/preview.png)
 
 
 ## Tech Stack
