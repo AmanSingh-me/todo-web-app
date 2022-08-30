@@ -59,14 +59,12 @@ img{
 }
 
 .statistics span{
-    height: 2em;
     display: inline-block;
     vertical-align: bottom;
     text-align: center;
     background: #000;
     margin: 0 .8em;
-    padding: 0 6px;
-    padding-top: 3px;
+    padding: 4px 6px;
 }
 .statistics span:last-child{
     margin-right: 0;
