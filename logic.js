@@ -2,7 +2,7 @@ import { body, todoText, isClearHtml_Runned, totalTodos, completedTodos, allTodo
 
 todoText.addEventListener('keyup', setTodo);
 function setTodo(event) {
-
+    let already_Present = false;
     if (event.key === "Enter" && todoText.value.length > 0) {
         if (!isClearHtml_Runned) { // For removing the text already present
             try {
@@ -15,14 +15,24 @@ function setTodo(event) {
             }
         }
 
-        let todo = todoText.value.trim();
-        todos_Arr.push({ text: todo, isDone: false });
-        addTodo(todo);
-        todoText.value = "";
-        todoCount.total++;
-        totalTodos.textContent = todoCount.total;
-        updt_Lcl_Stor();
-        allTodos.scrollBy(0, allTodos.scrollHeight); // Scrolls to current added
+        // replace whitespace with single white-space
+        let todo = todoText.value.replace(/\s+/g, ' ').trim(); 
+        for (const obj of todos_Arr) { // Checking if todo is already present or not
+            if (obj.text === todo) {
+                alert('Already Added');
+                already_Present = true;
+                break;
+            }
+        }
+        if (!already_Present) {
+            todos_Arr.push({ text: todo, isDone: false });
+            addTodo(todo);
+            todoText.value = "";
+            todoCount.total++;
+            totalTodos.textContent = todoCount.total;
+            updt_Lcl_Stor();
+            allTodos.scrollBy(0, allTodos.scrollHeight); // Scrolls to current added
+        }
     }
 }
 document.addEventListener('DOMContentLoaded', showTodos());
